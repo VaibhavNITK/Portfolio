@@ -219,6 +219,6 @@ export const projects = [
         theme: 'btn-back-yellow',
         name: 'Portfolio',
         description: 'Crafted a captivating 3D portfolio website featuring engaging sections for about, projects, and an integrated email feature, harmonizing creativity with functionality for a distinctive online presence.',
-        link: 'https://github.com/adrianhajdin/project_ai_summarizer',
+        link: 'https://github.com/VaibhavNITK/Portfolio',
     }
 ];
