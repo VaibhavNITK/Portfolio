@@ -15,7 +15,7 @@ const Projects = () => {
       </h1>
 
       <p className='text-slate-500 mt-2 leading-relaxed'>
-      Embedded within my journey are select projects, each a cherished culmination of passion and dedication. Many are open-source, inviting exploration and collaboration. They aren't just code repositories; they're invitations to join me in shaping their evolution. Your contribution adds a unique hue to these creations, transforming lines of code into vibrant innovations. Together, let's craft and mold these digital canvases, bridging gaps and forging connections in the ever-evolving landscape of technology
+      Embedded within my journey are select projects, each a cherished culmination of passion and dedication. They aren't just code repositories; they're invitations to join me in shaping their evolution. Your contribution adds a unique hue to these creations, transforming lines of code into vibrant innovations. Together, let's craft and mold these digital canvases, bridging gaps and forging connections in the ever-evolving landscape of technology
       </p>
 
       <div className='flex flex-wrap my-20 gap-16'>
