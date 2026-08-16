@@ -1,4 +1,4 @@
-name: Build and Auto Deploy Portfolio
+name: Build Validation
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,13 +27,3 @@ jobs:
 
       - name: Build Production Bundle
         run: npm run build
-
-      # Vercel Auto Deploy Action (Optional via Vercel Token or GitHub Vercel Integration)
-      - name: Deploy to Vercel Action
-        uses: amondnet/vercel-action@v25
-        if: ${{ secrets.VERCEL_TOKEN != '' }}
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: '--prod'
