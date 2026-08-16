@@ -1,0 +1,39 @@
+name: Build and Auto Deploy Portfolio
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build Production Bundle
+        run: npm run build
+
+      # Vercel Auto Deploy Action (Optional via Vercel Token or GitHub Vercel Integration)
+      - name: Deploy to Vercel Action
+        uses: amondnet/vercel-action@v25
+        if: ${{ secrets.VERCEL_TOKEN != '' }}
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'

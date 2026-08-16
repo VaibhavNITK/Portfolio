@@ -338,7 +338,7 @@ export const projects = [
         iconUrl: estate,
         theme: 'btn-back-black',
         name: 'High-Frequency Limit Order Book Engine',
-        period: '2024',
+        period: '2026',
         tech: ['C++', 'Multithreading', 'Quant Trading', 'GoogleTest'],
         description: 'Designed and implemented an ultra-low latency C++ Limit Order Book matching engine for algorithmic high-frequency trading. Supports sub-microsecond limit & market order placement, cancellation, price-time priority execution, double-linked list depth tracking, and comprehensive unit tests.',
         link: 'https://github.com/VaibhavNITK/limit_order_book',
