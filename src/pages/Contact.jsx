@@ -5,6 +5,7 @@ import { Suspense, useRef, useState } from "react";
 import { Fox } from "../models";
 import useAlert from "../hooks/useAlert";
 import { Alert, Loader } from "../components";
+import { personalInfo } from "../constants";
 
 const Contact = () => {
   const formRef = useRef();
@@ -20,76 +21,152 @@ const Contact = () => {
   const handleFocus = () => setCurrentAnimation("walk");
   const handleBlur = () => setCurrentAnimation("idle");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setCurrentAnimation("hit");
 
-    emailjs
-      .send(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        {
-          from_name: form.name,
-          to_name: "Vaibhav",
-          from_email: form.email,
-          to_email: "vaibhavagarwal693@gmail.com",
+    const serviceId = import.meta.env.VITE_APP_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY;
+
+    // 1. Try EmailJS first if keys exist
+    if (serviceId && templateId && publicKey) {
+      try {
+        await emailjs.send(
+          serviceId,
+          templateId,
+          {
+            from_name: form.name,
+            from_email: form.email,
+            reply_to: form.email,
+            to_name: "Vaibhav Agrawal",
+            to_email: personalInfo.email,
+            message: form.message,
+          },
+          publicKey
+        );
+
+        handleSuccess();
+        return;
+      } catch (error) {
+        console.warn("EmailJS attempt failed, using instant fallback:", error);
+      }
+    }
+
+    // 2. Bulletproof Fallback: Send directly via Formsubmit AJAX endpoint
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${personalInfo.email}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `Portfolio Message from ${form.name}`,
+          name: form.name,
+          email: form.email,
           message: form.message,
-        },
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      )
-      .then(
-        () => {
-          setLoading(false);
-          showAlert({
-            show: true,
-            text: "Thank you for your message 😃",
-            type: "success",
-          });
+        }),
+      });
 
-          setTimeout(() => {
-            hideAlert(false);
-            setCurrentAnimation("idle");
-            setForm({
-              name: "",
-              email: "",
-              message: "",
-            });
-          }, [3000]);
-        },
-        (error) => {
-          setLoading(false);
-          console.error(error);
-          setCurrentAnimation("idle");
+      if (response.ok) {
+        handleSuccess();
+      } else {
+        throw new Error("Formsubmit response not ok");
+      }
+    } catch (err) {
+      console.error("Form submit error:", err);
+      setLoading(false);
+      setCurrentAnimation("idle");
+      showAlert({
+        show: true,
+        text: `Message couldn't be sent automatically. Please email directly to ${personalInfo.email} ✉️`,
+        type: "danger",
+      });
 
-          showAlert({
-            show: true,
-            text: "I didn't receive your message 😢",
-            type: "danger",
-          });
-        }
-      );
+      setTimeout(() => {
+        hideAlert(false);
+      }, 5000);
+    }
+  };
+
+  const handleSuccess = () => {
+    setLoading(false);
+    showAlert({
+      show: true,
+      text: `Thank you ${form.name}! Your message has been sent directly to Vaibhav 😃`,
+      type: "success",
+    });
+
+    setTimeout(() => {
+      hideAlert(false);
+      setCurrentAnimation("idle");
+      setForm({ name: "", email: "", message: "" });
+    }, 4000);
   };
 
   return (
-    <section className='relative flex lg:flex-row flex-col max-container'>
+    <section className='relative flex lg:flex-row flex-col max-container pb-12 gap-10'>
       {alert.show && <Alert {...alert} />}
 
       <div className='flex-1 min-w-[50%] flex flex-col'>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-600 border border-blue-200 w-fit mb-3">
+          <span>💬 Direct Contact & Messaging</span>
+        </div>
         <h1 className='head-text'>Get in Touch</h1>
+        <p className="text-slate-500 mt-2 text-sm sm:text-base leading-relaxed">
+          Whether you want to discuss software engineering roles, microservices architecture, quantitative C++ systems, or full-stack projects — reach out anytime!
+        </p>
 
+        {/* Quick Contact Info Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+          <a
+            href={`mailto:${personalInfo.email}`}
+            className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-blue-500 hover:shadow-md transition-all flex items-center gap-3.5 group"
+          >
+            <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xl shrink-0 group-hover:scale-110 transition-transform">
+              ✉️
+            </div>
+            <div className="overflow-hidden">
+              <span className="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">Email Address</span>
+              <span className="text-xs sm:text-sm font-bold text-slate-800 truncate block group-hover:text-blue-600 transition-colors">
+                {personalInfo.email}
+              </span>
+            </div>
+          </a>
+
+          <a
+            href={`tel:${personalInfo.phone}`}
+            className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-blue-500 hover:shadow-md transition-all flex items-center gap-3.5 group"
+          >
+            <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl shrink-0 group-hover:scale-110 transition-transform">
+              📞
+            </div>
+            <div>
+              <span className="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">Phone / Mobile</span>
+              <span className="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-emerald-600 transition-colors">
+                {personalInfo.phone}
+              </span>
+            </div>
+          </a>
+        </div>
+
+        {/* Form Card */}
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='w-full flex flex-col gap-7 mt-14'
+          className='w-full flex flex-col gap-5 mt-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-md relative overflow-hidden'
         >
-          <label className='text-black-500 font-semibold'>
-            Name
+          <h3 className="text-lg font-bold text-slate-900">Send Message</h3>
+
+          <label className='text-slate-700 font-semibold text-xs uppercase tracking-wider'>
+            Your Name
             <input
               type='text'
               name='name'
-              className='input'
-              placeholder='John'
+              className='input mt-1.5'
+              placeholder='Full Name or Organization'
               required
               value={form.name}
               onChange={handleChange}
@@ -97,13 +174,13 @@ const Contact = () => {
               onBlur={handleBlur}
             />
           </label>
-          <label className='text-black-500 font-semibold'>
-            Email
+          <label className='text-slate-700 font-semibold text-xs uppercase tracking-wider'>
+            Your Email Address
             <input
               type='email'
               name='email'
-              className='input'
-              placeholder='John@gmail.com'
+              className='input mt-1.5'
+              placeholder='your.email@domain.com'
               required
               value={form.email}
               onChange={handleChange}
@@ -111,13 +188,14 @@ const Contact = () => {
               onBlur={handleBlur}
             />
           </label>
-          <label className='text-black-500 font-semibold'>
-            Your Message
+          <label className='text-slate-700 font-semibold text-xs uppercase tracking-wider'>
+            Message
             <textarea
               name='message'
               rows='4'
-              className='textarea'
-              placeholder='Write your thoughts here...'
+              className='textarea mt-1.5'
+              placeholder='Write your message, project idea, or inquiry here...'
+              required
               value={form.message}
               onChange={handleChange}
               onFocus={handleFocus}
@@ -128,16 +206,28 @@ const Contact = () => {
           <button
             type='submit'
             disabled={loading}
-            className='btn'
+            className='btn bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-blue-500/25 transition-all text-sm mt-2 flex items-center justify-center gap-2'
             onFocus={handleFocus}
             onBlur={handleBlur}
           >
-            {loading ? "Sending..." : "Submit"}
+            {loading ? (
+              <>
+                <span className="w-4 h-4 rounded-full border-2 border-white border-t-transparent animate-spin inline-block"></span>
+                <span>Sending Message...</span>
+              </>
+            ) : (
+              "Send Message 🚀"
+            )}
           </button>
         </form>
       </div>
 
-      <div className='lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]'>
+      {/* 3D Fox Canvas */}
+      <div className='lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px] bg-slate-900/5 rounded-3xl overflow-hidden border border-slate-200/80 relative shadow-inner'>
+        <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-800 border border-slate-200/80 shadow-sm flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>🦊 Interactive 3D Canvas</span>
+        </div>
         <Canvas
           camera={{
             position: [0, 0, 5],
@@ -145,6 +235,7 @@ const Contact = () => {
             near: 0.1,
             far: 1000,
           }}
+          dpr={[1, 1.5]}
         >
           <directionalLight position={[0, 0, 1]} intensity={2.5} />
           <ambientLight intensity={1} />

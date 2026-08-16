@@ -17,7 +17,9 @@ const Home = () => {
 
   useEffect(() => {
     if (isPlayingMusic) {
-      audioRef.current.play();
+      audioRef.current.play().catch(() => setIsPlayingMusic(false));
+    } else {
+      audioRef.current.pause();
     }
 
     return () => {
@@ -28,9 +30,8 @@ const Home = () => {
   const adjustBiplaneForScreenSize = () => {
     let screenScale, screenPosition;
 
-    // If screen width is less than 768px, adjust the scale and position
     if (window.innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5];
+      screenScale = [1.3, 1.3, 1.3];
       screenPosition = [0, -1.5, 0];
     } else {
       screenScale = [3, 3, 3];
@@ -44,7 +45,7 @@ const Home = () => {
     let screenScale, screenPosition;
 
     if (window.innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9];
+      screenScale = [0.85, 0.85, 0.85];
       screenPosition = [0, -6.5, -43.4];
     } else {
       screenScale = [1, 1, 1];
@@ -58,16 +59,20 @@ const Home = () => {
   const [islandScale, islandPosition] = adjustIslandForScreenSize();
 
   return (
-    <section className='w-full h-screen relative'>
-      <div className='absolute top-28 left-0 right-0 z-10 flex items-center justify-center'>
+    <section className='w-full h-screen relative bg-slate-900 overflow-hidden'>
+      {/* Dynamic Floating Banner */}
+      <div className='absolute top-20 sm:top-24 left-0 right-0 z-10 flex items-center justify-center px-4'>
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
 
+      {/* 3D Interactive Canvas */}
       <Canvas
         className={`w-full h-screen bg-transparent ${
           isRotating ? "cursor-grabbing" : "cursor-grab"
         }`}
         camera={{ near: 0.1, far: 1000 }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: true, powerPreference: "high-performance" }}
       >
         <Suspense fallback={<Loader />}>
           <directionalLight position={[1, 1, 1]} intensity={2} />
@@ -104,13 +109,17 @@ const Home = () => {
         </Suspense>
       </Canvas>
 
-      <div className='absolute bottom-2 left-2'>
+      {/* Interactive Sound Jukebox Control */}
+      <div className='absolute bottom-5 left-5 z-10 flex items-center gap-3 bg-white/80 backdrop-blur-md px-3.5 py-2 rounded-full border border-slate-200/80 shadow-lg hover:bg-white transition-all'>
         <img
           src={!isPlayingMusic ? soundoff : soundon}
           alt='jukebox'
           onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-          className='w-10 h-10 cursor-pointer object-contain'
+          className='w-7 h-7 cursor-pointer object-contain hover:scale-110 transition-transform'
         />
+        <span className="text-xs font-bold text-slate-700 hidden sm:inline">
+          {isPlayingMusic ? "Background Music Playing 🎵" : "Click to Play Ambient Music 🔇"}
+        </span>
       </div>
     </section>
   );
