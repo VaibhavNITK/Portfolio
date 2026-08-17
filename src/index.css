@@ -44,10 +44,6 @@ body {
     @apply text-white bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-600 hover:from-blue-700 hover:to-indigo-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-xl text-sm w-full sm:w-auto px-6 py-3.5 text-center shadow-lg shadow-blue-500/25 transition-all active:scale-[0.98];
   }
 
-  .header {
-    @apply flex justify-between items-center sm:px-12 px-5 py-3.5 max-w-6xl mx-auto sticky top-0 bg-white/80 backdrop-blur-md z-50 right-0 left-0 border-b border-slate-200/60 shadow-sm;
-  }
-
   .footer {
     @apply max-w-6xl mx-auto sm:px-12 pb-8 px-6 flex flex-col gap-6;
   }
