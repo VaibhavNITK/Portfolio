@@ -9,7 +9,7 @@
   --green-rgb: 125 161 35;
 }
 
-/* Multi-Theme Background & Text Setup */
+/* Multi-Theme Background, Text, & Neon Grid Overlay Setup */
 html[data-theme="light"] body {
   background-color: #f8fafc;
   color: #0f172a;
@@ -18,22 +18,26 @@ html[data-theme="light"] body {
 html[data-theme="midnight"] body {
   background-color: #030712;
   color: #f8fafc;
+  background-image: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.12), transparent 70%);
 }
 
 html[data-theme="cyberpunk"] body {
   background-color: #050508;
   color: #22d3ee;
+  background-image: linear-gradient(rgba(0, 240, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 240, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
 html[data-theme="emerald"] body {
   background-color: #022c22;
   color: #ecfdf5;
+  background-image: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15), transparent 70%);
 }
 
 body {
   font-family: "Inter", "Poppins", sans-serif;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 @layer utilities {
@@ -100,6 +104,33 @@ body {
   background: rgba(15, 23, 42, 0.85);
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+/* Cyberpunk & Emerald Glowing Border Card Enhancements */
+html[data-theme="cyberpunk"] .bg-white,
+html[data-theme="cyberpunk"] .dark\:bg-slate-900\/90 {
+  background-color: rgba(5, 5, 12, 0.9) !important;
+  border-color: rgba(0, 240, 255, 0.3) !important;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
+}
+
+html[data-theme="cyberpunk"] .bg-white:hover,
+html[data-theme="cyberpunk"] .dark\:bg-slate-900\/90:hover {
+  border-color: rgba(0, 240, 255, 0.8) !important;
+  box-shadow: 0 0 35px rgba(0, 240, 255, 0.35);
+}
+
+html[data-theme="emerald"] .bg-white,
+html[data-theme="emerald"] .dark\:bg-slate-900\/90 {
+  background-color: rgba(2, 44, 34, 0.9) !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+}
+
+html[data-theme="emerald"] .bg-white:hover,
+html[data-theme="emerald"] .dark\:bg-slate-900\/90:hover {
+  border-color: rgba(52, 211, 153, 0.8) !important;
+  box-shadow: 0 0 35px rgba(52, 211, 153, 0.35);
 }
 
 .glassmorphism-dark {

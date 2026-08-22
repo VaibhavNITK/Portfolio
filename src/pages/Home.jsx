@@ -5,12 +5,14 @@ import sakura from "../assets/sakura.mp3";
 import { HomeInfo, Loader } from "../components";
 import { soundoff, soundon } from "../assets/icons";
 import { Bird, Island, Plane, Sky } from "../models";
+import { useTheme } from "../context/ThemeContext";
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
   audioRef.current.volume = 0.4;
   audioRef.current.loop = true;
 
+  const { theme } = useTheme();
   const [currentStage, setCurrentStage] = useState(1);
   const [isRotating, setIsRotating] = useState(false);
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
@@ -58,8 +60,56 @@ const Home = () => {
   const [biplaneScale, biplanePosition] = adjustBiplaneForScreenSize();
   const [islandScale, islandPosition] = adjustIslandForScreenSize();
 
+  // Dynamic 3D Theme Lighting Config
+  const getLightingConfig = () => {
+    switch (theme) {
+      case "midnight":
+        return {
+          directional: "#38bdf8",
+          dirIntensity: 2.2,
+          ambient: "#1e1b4b",
+          ambIntensity: 0.8,
+          point: "#6366f1",
+          sky: "#0284c7",
+          ground: "#030712",
+        };
+      case "cyberpunk":
+        return {
+          directional: "#00f0ff",
+          dirIntensity: 2.8,
+          ambient: "#4c1d95",
+          ambIntensity: 1.0,
+          point: "#d946ef",
+          sky: "#00f0ff",
+          ground: "#050508",
+        };
+      case "emerald":
+        return {
+          directional: "#34d399",
+          dirIntensity: 2.3,
+          ambient: "#064e3b",
+          ambIntensity: 0.8,
+          point: "#10b981",
+          sky: "#34d399",
+          ground: "#022c22",
+        };
+      default:
+        return {
+          directional: "#ffffff",
+          dirIntensity: 2.0,
+          ambient: "#ffffff",
+          ambIntensity: 0.6,
+          point: "#3b82f6",
+          sky: "#b1e1ff",
+          ground: "#000000",
+        };
+    }
+  };
+
+  const lights = getLightingConfig();
+
   return (
-    <section className='w-full h-screen relative bg-slate-950 overflow-hidden select-none'>
+    <section className='w-full h-screen relative transition-colors duration-500 overflow-hidden select-none'>
       {/* Top Dynamic Stage Banner */}
       <div className='absolute top-20 sm:top-24 left-0 right-0 z-10 flex items-center justify-center px-4 pointer-events-auto'>
         {currentStage && <HomeInfo currentStage={currentStage} />}
@@ -81,9 +131,9 @@ const Home = () => {
         gl={{ antialias: true, powerPreference: "high-performance" }}
       >
         <Suspense fallback={<Loader />}>
-          <directionalLight position={[1, 1, 1]} intensity={2} />
-          <ambientLight intensity={0.5} />
-          <pointLight position={[10, 5, 10]} intensity={2} />
+          <directionalLight position={[1, 1, 1]} color={lights.directional} intensity={lights.dirIntensity} />
+          <ambientLight color={lights.ambient} intensity={lights.ambIntensity} />
+          <pointLight position={[10, 5, 10]} color={lights.point} intensity={2} />
           <spotLight
             position={[0, 50, 10]}
             angle={0.15}
@@ -91,8 +141,8 @@ const Home = () => {
             intensity={2}
           />
           <hemisphereLight
-            skyColor='#b1e1ff'
-            groundColor='#000000'
+            skyColor={lights.sky}
+            groundColor={lights.ground}
             intensity={1}
           />
 
@@ -118,19 +168,19 @@ const Home = () => {
       {/* High-Contrast Bottom Highlights Bar */}
       <div className="absolute bottom-16 sm:bottom-6 left-4 right-4 z-10 max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3 pointer-events-none">
         <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl px-3.5 py-1.5 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-slate-900 dark:text-white text-[11px] sm:text-xs font-black shadow-2xl flex items-center gap-2 pointer-events-auto ring-1 ring-slate-900/10 dark:ring-white/10">
-          <span className="w-5 h-5 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs">🏢</span>
+          <span className="w-5 h-5 rounded-lg bg-blue-100 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 flex items-center justify-center text-xs">🏢</span>
           <span>D. E. Shaw & Co. (MTS)</span>
         </div>
         <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl px-3.5 py-1.5 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-slate-900 dark:text-white text-[11px] sm:text-xs font-black shadow-2xl flex items-center gap-2 pointer-events-auto ring-1 ring-slate-900/10 dark:ring-white/10">
-          <span className="w-5 h-5 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center text-xs">💻</span>
+          <span className="w-5 h-5 rounded-lg bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 flex items-center justify-center text-xs">💻</span>
           <span>Ex-Microsoft Intern</span>
         </div>
         <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl px-3.5 py-1.5 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-slate-900 dark:text-white text-[11px] sm:text-xs font-black shadow-2xl flex items-center gap-2 pointer-events-auto ring-1 ring-slate-900/10 dark:ring-white/10">
-          <span className="w-5 h-5 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center text-xs">🧩</span>
+          <span className="w-5 h-5 rounded-lg bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 flex items-center justify-center text-xs">🧩</span>
           <span>CF Expert (1704)</span>
         </div>
         <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl px-3.5 py-1.5 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-slate-900 dark:text-white text-[11px] sm:text-xs font-black shadow-2xl flex items-center gap-2 pointer-events-auto ring-1 ring-slate-900/10 dark:ring-white/10">
-          <span className="w-5 h-5 rounded-lg bg-orange-100 text-orange-800 flex items-center justify-center text-xs">⚡</span>
+          <span className="w-5 h-5 rounded-lg bg-orange-100 dark:bg-orange-900/60 text-orange-800 dark:text-orange-300 flex items-center justify-center text-xs">⚡</span>
           <span>LC Knight (2067)</span>
         </div>
       </div>
