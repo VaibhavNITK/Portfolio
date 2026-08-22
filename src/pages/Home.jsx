@@ -59,13 +59,19 @@ const Home = () => {
   const [islandScale, islandPosition] = adjustIslandForScreenSize();
 
   return (
-    <section className='w-full h-screen relative bg-slate-900 overflow-hidden'>
-      {/* Dynamic Floating Banner */}
-      <div className='absolute top-20 sm:top-24 left-0 right-0 z-10 flex items-center justify-center px-4'>
+    <section className='w-full h-screen relative bg-slate-900 overflow-hidden select-none'>
+      {/* Top Dynamic Stage Banner */}
+      <div className='absolute top-20 sm:top-24 left-0 right-0 z-10 flex items-center justify-center px-4 pointer-events-auto'>
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
 
-      {/* 3D Interactive Canvas */}
+      {/* Interactive Controls Overlay Guide */}
+      <div className="absolute top-28 sm:top-32 right-4 z-10 hidden md:flex items-center gap-2 bg-slate-900/80 text-white backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-700/80 shadow-lg text-xs font-semibold">
+        <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+        <span>🕹️ Orbit: Drag mouse or press [◄] [►] Arrow Keys</span>
+      </div>
+
+      {/* 3D WebGL Interactive Canvas */}
       <Canvas
         className={`w-full h-screen bg-transparent ${
           isRotating ? "cursor-grabbing" : "cursor-grab"
@@ -109,16 +115,32 @@ const Home = () => {
         </Suspense>
       </Canvas>
 
-      {/* Interactive Sound Jukebox Control */}
-      <div className='absolute bottom-5 left-5 z-10 flex items-center gap-3 bg-white/80 backdrop-blur-md px-3.5 py-2 rounded-full border border-slate-200/80 shadow-lg hover:bg-white transition-all'>
+      {/* Bottom Floating Highlights Bar */}
+      <div className="absolute bottom-16 sm:bottom-6 left-4 right-4 z-10 max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3 pointer-events-none">
+        <div className="bg-slate-900/85 backdrop-blur-xl px-3.5 py-1.5 rounded-2xl border border-slate-700/70 text-slate-200 text-[11px] sm:text-xs font-bold shadow-xl flex items-center gap-2 pointer-events-auto">
+          <span className="text-blue-400">🏢</span> D. E. Shaw & Co. (MTS)
+        </div>
+        <div className="bg-slate-900/85 backdrop-blur-xl px-3.5 py-1.5 rounded-2xl border border-slate-700/70 text-slate-200 text-[11px] sm:text-xs font-bold shadow-xl flex items-center gap-2 pointer-events-auto">
+          <span className="text-sky-400">💻</span> Ex-Microsoft Intern
+        </div>
+        <div className="bg-slate-900/85 backdrop-blur-xl px-3.5 py-1.5 rounded-2xl border border-slate-700/70 text-amber-300 text-[11px] sm:text-xs font-bold shadow-xl flex items-center gap-2 pointer-events-auto">
+          <span>🧩</span> Codeforces Expert (1704)
+        </div>
+        <div className="bg-slate-900/85 backdrop-blur-xl px-3.5 py-1.5 rounded-2xl border border-slate-700/70 text-orange-300 text-[11px] sm:text-xs font-bold shadow-xl flex items-center gap-2 pointer-events-auto">
+          <span>⚡</span> LeetCode Knight (2067)
+        </div>
+      </div>
+
+      {/* Jukebox Audio Toggle Button */}
+      <div className='absolute bottom-4 left-4 z-20 flex items-center gap-3 bg-white/90 backdrop-blur-xl px-3.5 py-2 rounded-full border border-slate-200/80 shadow-xl hover:bg-white transition-all'>
         <img
           src={!isPlayingMusic ? soundoff : soundon}
           alt='jukebox'
           onClick={() => setIsPlayingMusic(!isPlayingMusic)}
           className='w-7 h-7 cursor-pointer object-contain hover:scale-110 transition-transform'
         />
-        <span className="text-xs font-bold text-slate-700 hidden sm:inline">
-          {isPlayingMusic ? "Background Music Playing 🎵" : "Click to Play Ambient Music 🔇"}
+        <span className="text-xs font-bold text-slate-800 hidden sm:inline">
+          {isPlayingMusic ? "Ambient Music Playing 🎵" : "Click for Music 🔇"}
         </span>
       </div>
     </section>
