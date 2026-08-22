@@ -81,18 +81,14 @@ const About = () => {
         </div>
 
         {/* Quick Details Chips */}
-        <div className="mt-8 pt-6 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+        <div className="mt-8 pt-6 border-t border-slate-800/80 grid grid-cols-2 sm:grid-cols-3 gap-3 text-xs">
           <div className="bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
             <span className="text-slate-400 block text-[10px] uppercase font-bold">Location</span>
             <span className="font-semibold text-slate-200">{personalInfo.location}</span>
           </div>
           <div className="bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
             <span className="text-slate-400 block text-[10px] uppercase font-bold">Education</span>
-            <span className="font-semibold text-slate-200">NITK Surathkal (CSE)</span>
-          </div>
-          <div className="bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
-            <span className="text-slate-400 block text-[10px] uppercase font-bold">CGPA</span>
-            <span className="font-semibold text-emerald-400">{personalInfo.cgpa} / 10.0</span>
+            <span className="font-semibold text-slate-200">NITK Surathkal (CSE '25)</span>
           </div>
           <div className="bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
             <span className="text-slate-400 block text-[10px] uppercase font-bold">CP Highlights</span>
@@ -411,8 +407,8 @@ const About = () => {
               <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{education.location}</p>
               <p className="text-xs sm:text-sm font-bold text-blue-600 dark:text-blue-400 mt-2">{education.degree}</p>
               
-              <div className="mt-3 flex items-center justify-between bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 px-3 py-2 rounded-xl text-xs font-bold border border-emerald-200/60 dark:border-emerald-800/40">
-                <span>CGPA: {education.cgpa} / 10.0</span>
+              <div className="mt-3 flex items-center justify-between bg-blue-50 dark:bg-blue-950/40 text-blue-800 dark:text-blue-300 px-3 py-2 rounded-xl text-xs font-bold border border-blue-200/60 dark:border-blue-800/40">
+                <span>Degree: B.Tech Computer Science</span>
                 <span>Period: {education.period}</span>
               </div>
 

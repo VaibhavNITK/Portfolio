@@ -59,16 +59,16 @@ const Home = () => {
   const [islandScale, islandPosition] = adjustIslandForScreenSize();
 
   return (
-    <section className='w-full h-screen relative bg-slate-900 overflow-hidden select-none'>
+    <section className='w-full h-screen relative bg-slate-950 overflow-hidden select-none'>
       {/* Top Dynamic Stage Banner */}
       <div className='absolute top-20 sm:top-24 left-0 right-0 z-10 flex items-center justify-center px-4 pointer-events-auto'>
         {currentStage && <HomeInfo currentStage={currentStage} />}
       </div>
 
       {/* Interactive Controls Overlay Guide */}
-      <div className="absolute top-28 sm:top-32 right-4 z-10 hidden md:flex items-center gap-2 bg-slate-900/80 text-white backdrop-blur-md px-3.5 py-1.5 rounded-full border border-slate-700/80 shadow-lg text-xs font-semibold">
-        <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-        <span>🕹️ Orbit: Drag mouse or press [◄] [►] Arrow Keys</span>
+      <div className="absolute top-24 sm:top-28 right-4 z-10 hidden md:flex items-center gap-2 bg-slate-900/90 text-white backdrop-blur-xl px-4 py-2 rounded-full border border-slate-700 shadow-2xl text-xs font-bold ring-1 ring-white/20">
+        <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>🕹️ Drag mouse or press [◄] [►] Arrow Keys to rotate</span>
       </div>
 
       {/* 3D WebGL Interactive Canvas */}
@@ -115,33 +115,41 @@ const Home = () => {
         </Suspense>
       </Canvas>
 
-      {/* Bottom Floating Highlights Bar */}
+      {/* High-Contrast Bottom Highlights Bar */}
       <div className="absolute bottom-16 sm:bottom-6 left-4 right-4 z-10 max-w-4xl mx-auto flex flex-wrap items-center justify-center gap-2 sm:gap-3 pointer-events-none">
-        <div className="bg-slate-900/85 backdrop-blur-xl px-3.5 py-1.5 rounded-2xl border border-slate-700/70 text-slate-200 text-[11px] sm:text-xs font-bold shadow-xl flex items-center gap-2 pointer-events-auto">
-          <span className="text-blue-400">🏢</span> D. E. Shaw & Co. (MTS)
+        <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl px-3.5 py-1.5 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-slate-900 dark:text-white text-[11px] sm:text-xs font-black shadow-2xl flex items-center gap-2 pointer-events-auto ring-1 ring-slate-900/10 dark:ring-white/10">
+          <span className="w-5 h-5 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs">🏢</span>
+          <span>D. E. Shaw & Co. (MTS)</span>
         </div>
-        <div className="bg-slate-900/85 backdrop-blur-xl px-3.5 py-1.5 rounded-2xl border border-slate-700/70 text-slate-200 text-[11px] sm:text-xs font-bold shadow-xl flex items-center gap-2 pointer-events-auto">
-          <span className="text-sky-400">💻</span> Ex-Microsoft Intern
+        <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl px-3.5 py-1.5 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-slate-900 dark:text-white text-[11px] sm:text-xs font-black shadow-2xl flex items-center gap-2 pointer-events-auto ring-1 ring-slate-900/10 dark:ring-white/10">
+          <span className="w-5 h-5 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center text-xs">💻</span>
+          <span>Ex-Microsoft Intern</span>
         </div>
-        <div className="bg-slate-900/85 backdrop-blur-xl px-3.5 py-1.5 rounded-2xl border border-slate-700/70 text-amber-300 text-[11px] sm:text-xs font-bold shadow-xl flex items-center gap-2 pointer-events-auto">
-          <span>🧩</span> Codeforces Expert (1704)
+        <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl px-3.5 py-1.5 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-slate-900 dark:text-white text-[11px] sm:text-xs font-black shadow-2xl flex items-center gap-2 pointer-events-auto ring-1 ring-slate-900/10 dark:ring-white/10">
+          <span className="w-5 h-5 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center text-xs">🧩</span>
+          <span>CF Expert (1704)</span>
         </div>
-        <div className="bg-slate-900/85 backdrop-blur-xl px-3.5 py-1.5 rounded-2xl border border-slate-700/70 text-orange-300 text-[11px] sm:text-xs font-bold shadow-xl flex items-center gap-2 pointer-events-auto">
-          <span>⚡</span> LeetCode Knight (2067)
+        <div className="bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl px-3.5 py-1.5 rounded-2xl border border-slate-200/90 dark:border-slate-800 text-slate-900 dark:text-white text-[11px] sm:text-xs font-black shadow-2xl flex items-center gap-2 pointer-events-auto ring-1 ring-slate-900/10 dark:ring-white/10">
+          <span className="w-5 h-5 rounded-lg bg-orange-100 text-orange-800 flex items-center justify-center text-xs">⚡</span>
+          <span>LC Knight (2067)</span>
         </div>
       </div>
 
-      {/* Jukebox Audio Toggle Button */}
-      <div className='absolute bottom-4 left-4 z-20 flex items-center gap-3 bg-white/90 backdrop-blur-xl px-3.5 py-2 rounded-full border border-slate-200/80 shadow-xl hover:bg-white transition-all'>
-        <img
-          src={!isPlayingMusic ? soundoff : soundon}
-          alt='jukebox'
+      {/* High-Contrast Jukebox Audio Toggle Button */}
+      <div className='absolute bottom-4 left-4 z-20 flex items-center gap-2.5 bg-white dark:bg-slate-900 backdrop-blur-2xl px-4 py-2 rounded-full border border-slate-300 dark:border-slate-700 shadow-2xl hover:scale-105 active:scale-95 transition-all ring-1 ring-slate-900/10 dark:ring-white/10'>
+        <button
           onClick={() => setIsPlayingMusic(!isPlayingMusic)}
-          className='w-7 h-7 cursor-pointer object-contain hover:scale-110 transition-transform'
-        />
-        <span className="text-xs font-bold text-slate-800 hidden sm:inline">
-          {isPlayingMusic ? "Ambient Music Playing 🎵" : "Click for Music 🔇"}
-        </span>
+          className="flex items-center gap-2 font-black text-xs text-slate-900 dark:text-white"
+        >
+          <img
+            src={!isPlayingMusic ? soundoff : soundon}
+            alt='jukebox'
+            className='w-6 h-6 cursor-pointer object-contain shrink-0'
+          />
+          <span className="font-extrabold tracking-tight">
+            {isPlayingMusic ? "Music ON 🎵" : "Music OFF 🔇"}
+          </span>
+        </button>
       </div>
     </section>
   );

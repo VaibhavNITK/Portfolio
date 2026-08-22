@@ -35,12 +35,11 @@ export const personalInfo = {
     phone: "+91 7480048186",
     github: "https://github.com/VaibhavNITK",
     linkedin: "https://www.linkedin.com/in/vaibhav-agrawal/",
-    cgpa: "8.28",
     university: "National Institute of Technology Karnataka (NITK) Surathkal",
     degree: "B.Tech in Computer Science and Engineering",
     gradYear: "2021 – 2025",
     bioParagraphs: [
-        "In the fast-paced realm of software engineering, I bridge high-throughput backend microservices with quantitative system architecture and responsive UI platforms. Hailing from India, I am a CSE graduate from NITK Surathkal (CGPA 8.28) and currently work as a Software Engineer at D. E. Shaw & Co., having previously interned at Microsoft.",
+        "In the fast-paced realm of software engineering, I bridge high-throughput backend microservices with quantitative system architecture and responsive UI platforms. Hailing from India, I am a CSE graduate from NITK Surathkal and currently work as a Software Engineer at D. E. Shaw & Co., having previously interned at Microsoft.",
         "Beyond writing clean code and solving complex algorithmic challenges, I am an avid sports enthusiast! Whether it's playing table tennis, badminton, staying active with long runs and walks, or engaging in strategic mind games, sports keep my focus sharp and energy vibrant.",
         "My approach to engineering is driven by curiosity, mathematical precision, and continuous learning — blending deep computer science fundamentals with low-latency algorithmic engineering."
     ]
@@ -304,7 +303,6 @@ export const education = {
     institution: "National Institute of Technology Karnataka (NITK)",
     location: "Surathkal, India",
     degree: "Bachelor of Technology in Computer Science and Engineering",
-    cgpa: "8.28",
     period: "2021 – 2025",
     highlights: [
         "Specialized in Core CS: Data Structures, Algorithms, OS, DBMS, Networks, Multithreading",
