@@ -106,11 +106,32 @@ body {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
-/* Cyberpunk & Emerald Glowing Border Card Enhancements */
+/* HIGH-CONTRAST THEME TEXT & CARD OVERRIDES */
+
+/* 1. Cyberpunk Neon Theme (Electric Cyan & Neon Glowing Text) */
+html[data-theme="cyberpunk"] .text-slate-900,
+html[data-theme="cyberpunk"] .text-slate-800,
+html[data-theme="cyberpunk"] .text-slate-700 {
+  color: #ffffff !important;
+}
+
+html[data-theme="cyberpunk"] .text-slate-600,
+html[data-theme="cyberpunk"] .text-slate-500,
+html[data-theme="cyberpunk"] .text-slate-400 {
+  color: #a5f3fc !important; /* Cyan-200 */
+}
+
+html[data-theme="cyberpunk"] .bg-slate-100,
+html[data-theme="cyberpunk"] .bg-slate-50 {
+  background-color: rgba(8, 47, 73, 0.6) !important;
+  color: #22d3ee !important;
+  border-color: rgba(0, 240, 255, 0.3) !important;
+}
+
 html[data-theme="cyberpunk"] .bg-white,
 html[data-theme="cyberpunk"] .dark\:bg-slate-900\/90 {
-  background-color: rgba(5, 5, 12, 0.9) !important;
-  border-color: rgba(0, 240, 255, 0.3) !important;
+  background-color: rgba(5, 5, 14, 0.95) !important;
+  border-color: rgba(0, 240, 255, 0.35) !important;
   box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
 }
 
@@ -120,10 +141,30 @@ html[data-theme="cyberpunk"] .dark\:bg-slate-900\/90:hover {
   box-shadow: 0 0 35px rgba(0, 240, 255, 0.35);
 }
 
+/* 2. Emerald Forest Theme (Mint & Lush Green Text) */
+html[data-theme="emerald"] .text-slate-900,
+html[data-theme="emerald"] .text-slate-800,
+html[data-theme="emerald"] .text-slate-700 {
+  color: #ffffff !important;
+}
+
+html[data-theme="emerald"] .text-slate-600,
+html[data-theme="emerald"] .text-slate-500,
+html[data-theme="emerald"] .text-slate-400 {
+  color: #a7f3d0 !important; /* Emerald-200 */
+}
+
+html[data-theme="emerald"] .bg-slate-100,
+html[data-theme="emerald"] .bg-slate-50 {
+  background-color: rgba(6, 78, 59, 0.6) !important;
+  color: #34d399 !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+}
+
 html[data-theme="emerald"] .bg-white,
 html[data-theme="emerald"] .dark\:bg-slate-900\/90 {
-  background-color: rgba(2, 44, 34, 0.9) !important;
-  border-color: rgba(16, 185, 129, 0.3) !important;
+  background-color: rgba(2, 44, 34, 0.95) !important;
+  border-color: rgba(16, 185, 129, 0.35) !important;
   box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
 }
 
@@ -131,6 +172,22 @@ html[data-theme="emerald"] .bg-white:hover,
 html[data-theme="emerald"] .dark\:bg-slate-900\/90:hover {
   border-color: rgba(52, 211, 153, 0.8) !important;
   box-shadow: 0 0 35px rgba(52, 211, 153, 0.35);
+}
+
+/* 3. Midnight Dark Theme (Deep Navy & Pure Crisp Text) */
+html[data-theme="midnight"] .text-slate-900,
+html[data-theme="midnight"] .text-slate-800 {
+  color: #ffffff !important;
+}
+
+html[data-theme="midnight"] .text-slate-700,
+html[data-theme="midnight"] .text-slate-600 {
+  color: #cbd5e1 !important; /* Slate-300 */
+}
+
+html[data-theme="midnight"] .text-slate-500,
+html[data-theme="midnight"] .text-slate-400 {
+  color: #94a3b8 !important; /* Slate-400 */
 }
 
 .glassmorphism-dark {
