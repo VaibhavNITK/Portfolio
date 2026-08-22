@@ -19,7 +19,8 @@
     "react-router-dom": "^6.17.0",
     "react-vertical-timeline-component": "^3.6.0",
     "three": "^0.157.0",
-    "lucide-react": "^0.294.0"
+    "lucide-react": "^0.294.0",
+    "@vercel/analytics": "^1.1.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

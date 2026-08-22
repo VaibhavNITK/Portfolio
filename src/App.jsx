@@ -1,11 +1,12 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 
 import { Footer, Navbar } from "./components";
 import { About, Contact, Home, Projects } from "./pages";
 
 const App = () => {
   return (
-    <main className='bg-slate-300/20'>
+    <main className='bg-slate-300/20 min-h-screen flex flex-col justify-between'>
       <Router>
         <Navbar />
         <Routes>
@@ -25,6 +26,7 @@ const App = () => {
           />
         </Routes>
       </Router>
+      <Analytics />
     </main>
   );
 };
