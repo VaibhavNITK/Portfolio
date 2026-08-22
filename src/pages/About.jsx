@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 import { CTA } from "../components";
 import {
@@ -31,7 +30,7 @@ const About = () => {
       : robustSkills.filter((s) => s.category === activeSkillCategory);
 
   return (
-    <section className='max-container pb-12 px-4 sm:px-8 overflow-hidden'>
+    <section className='max-container pb-12 px-4 sm:px-8 overflow-hidden transition-colors duration-300'>
       {/* 1. Hero Header & Personal Bio Card */}
       <div className="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-950 text-white rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden border border-slate-800">
         <div className="absolute top-0 right-0 -mt-10 -mr-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
@@ -105,26 +104,26 @@ const About = () => {
       {/* 2. About Me Narrative & Sports/Hobbies Section */}
       <div className="py-10">
         <div className="mb-6">
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Get To Know Me</span>
+          <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Get To Know Me</span>
           <h2 className="subhead-text text-2xl sm:text-3xl font-bold mt-0.5">About Me & Personal Passions</h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Story Card */}
-          <div className="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-4">
-            <div className="space-y-3 text-slate-600 text-sm sm:text-base leading-relaxed">
+          <div className="lg:col-span-2 bg-white dark:bg-slate-900/90 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between space-y-4">
+            <div className="space-y-3 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
               {personalInfo.bioParagraphs.map((para, index) => (
                 <p key={index}>{para}</p>
               ))}
             </div>
-            <div className="pt-4 border-t border-slate-100 flex flex-wrap gap-2 text-xs">
-              <span className="px-3 py-1 bg-blue-50 text-blue-700 font-bold rounded-lg border border-blue-200/60">
+            <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-2 text-xs">
+              <span className="px-3 py-1 bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 font-bold rounded-lg border border-blue-200/60 dark:border-blue-800/50">
                 🏓 Sports & Fitness
               </span>
-              <span className="px-3 py-1 bg-purple-50 text-purple-700 font-bold rounded-lg border border-purple-200/60">
+              <span className="px-3 py-1 bg-purple-50 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 font-bold rounded-lg border border-purple-200/60 dark:border-purple-800/50">
                 🧠 Problem Solving
               </span>
-              <span className="px-3 py-1 bg-emerald-50 text-emerald-700 font-bold rounded-lg border border-emerald-200/60">
+              <span className="px-3 py-1 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 font-bold rounded-lg border border-emerald-200/60 dark:border-emerald-800/50">
                 💡 High-Performance Code
               </span>
             </div>
@@ -135,22 +134,22 @@ const About = () => {
             {interestsAndHobbies.map((item) => (
               <div
                 key={item.name}
-                className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:border-blue-500/50 hover:shadow-md transition-all group"
+                className="bg-white dark:bg-slate-900/90 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-blue-500/50 hover:shadow-md transition-all group"
               >
                 <div className="flex items-center gap-3 mb-2">
-                  <div className="w-9 h-9 rounded-xl bg-slate-100 text-lg flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                  <div className="w-9 h-9 rounded-xl bg-slate-100 dark:bg-slate-800 text-lg flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
                     {item.icon}
                   </div>
-                  <h4 className="font-bold text-slate-900 text-sm group-hover:text-blue-600 transition-colors">
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                     {item.name}
                   </h4>
                 </div>
-                <p className="text-xs text-slate-500 leading-relaxed mb-3">
+                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-3">
                   {item.description}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
                   {item.tags.map((t) => (
-                    <span key={t} className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 text-slate-700">
+                    <span key={t} className="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
                       {t}
                     </span>
                   ))}
@@ -164,7 +163,7 @@ const About = () => {
       {/* 3. Competitive Programming & Achievements */}
       <div className="py-8">
         <div className="mb-6">
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Algorithmic Excellence</span>
+          <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Algorithmic Excellence</span>
           <h2 className="subhead-text text-2xl sm:text-3xl font-bold mt-0.5">
             Competitive Programming & Ranks
           </h2>
@@ -178,11 +177,11 @@ const About = () => {
               href={cp.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
+              className="group bg-white dark:bg-slate-900/90 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
             >
               <div className={`h-1.5 w-full absolute top-0 left-0 bg-gradient-to-r ${cp.color}`}></div>
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 mb-2">
-                <span className="font-bold text-slate-900 text-base group-hover:text-blue-600 transition-colors">
+                <span className="font-bold text-slate-900 dark:text-white text-base group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                   {cp.platform}
                 </span>
                 <span className={`px-2 py-0.5 rounded-full text-[11px] font-extrabold border ${cp.badgeBg}`}>
@@ -190,10 +189,10 @@ const About = () => {
                 </span>
               </div>
               <div className="mt-2">
-                <span className="text-2xl sm:text-3xl font-black text-slate-800 tracking-tight">
+                <span className="text-2xl sm:text-3xl font-black text-slate-800 dark:text-slate-100 tracking-tight">
                   {cp.rating}
                 </span>
-                <span className="text-[10px] text-slate-400 block mt-0.5">Rating Score</span>
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 block mt-0.5">Rating Score</span>
               </div>
             </a>
           ))}
@@ -204,17 +203,17 @@ const About = () => {
           {honorsAndRanks.map((item) => (
             <div
               key={item.title}
-              className="bg-gradient-to-r from-amber-50 to-orange-50/50 border border-amber-200/80 rounded-2xl p-5 shadow-sm flex items-center gap-4"
+              className="bg-gradient-to-r from-amber-50 to-orange-50/50 dark:from-amber-950/30 dark:to-orange-950/20 border border-amber-200/80 dark:border-amber-900/40 rounded-2xl p-5 shadow-sm flex items-center gap-4"
             >
               <div className="w-11 h-11 rounded-xl bg-amber-500 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-amber-500/20 shrink-0">
                 🏆
               </div>
               <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
                   {item.category}
                 </span>
-                <h4 className="text-base font-bold text-slate-900">{item.title}</h4>
-                <p className="text-xs text-slate-600">{item.detail}</p>
+                <h4 className="text-base font-bold text-slate-900 dark:text-white">{item.title}</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-300">{item.detail}</p>
               </div>
             </div>
           ))}
@@ -225,7 +224,7 @@ const About = () => {
       <div className='py-10'>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
           <div>
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Proficiency & Tools</span>
+            <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Proficiency & Tools</span>
             <h2 className='subhead-text text-2xl sm:text-3xl font-bold mt-0.5'>Robust Technical Skills</h2>
           </div>
 
@@ -238,7 +237,7 @@ const About = () => {
                 className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all ${
                   activeSkillCategory === cat
                     ? "bg-blue-600 text-white shadow-md shadow-blue-500/20"
-                    : "bg-white border border-slate-200 text-slate-600 hover:bg-slate-50"
+                    : "bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
                 }`}
               >
                 {cat}
@@ -251,13 +250,13 @@ const About = () => {
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
           {filteredSkills.map((skill) => (
             <div
-              className='bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group'
+              className='bg-white dark:bg-slate-900/90 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group'
               key={skill.name}
             >
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <div className='w-10 h-10 rounded-xl bg-slate-50 flex justify-center items-center p-2 border border-slate-100 group-hover:bg-blue-50 transition-colors shrink-0'>
+                    <div className='w-10 h-10 rounded-xl bg-slate-50 dark:bg-slate-800 flex justify-center items-center p-2 border border-slate-100 dark:border-slate-700 group-hover:bg-blue-50 dark:group-hover:bg-blue-900/30 transition-colors shrink-0'>
                       <img
                         src={skill.imageUrl}
                         alt={skill.name}
@@ -265,35 +264,35 @@ const About = () => {
                       />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900 text-sm group-hover:text-blue-600 transition-colors">
+                      <h4 className="font-bold text-slate-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         {skill.name}
                       </h4>
-                      <span className="text-[11px] text-slate-400 font-medium block">
+                      <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium block">
                         {skill.category}
                       </span>
                     </div>
                   </div>
 
-                  <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-blue-50 text-blue-700 border border-blue-200/60">
+                  <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/50">
                     {skill.level}
                   </span>
                 </div>
 
                 {/* Proficiency Bar */}
-                <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-2">
+                <div className="w-full bg-slate-100 dark:bg-slate-800 h-2 rounded-full overflow-hidden mt-2">
                   <div
                     className="bg-gradient-to-r from-blue-500 to-indigo-600 h-full rounded-full transition-all duration-500"
                     style={{ width: `${skill.proficiency}%` }}
                   ></div>
                 </div>
 
-                <div className="flex justify-between items-center text-[10px] text-slate-400 font-semibold mt-1">
+                <div className="flex justify-between items-center text-[10px] text-slate-400 dark:text-slate-500 font-semibold mt-1">
                   <span>Proficiency</span>
                   <span>{skill.proficiency}%</span>
                 </div>
               </div>
 
-              <p className="text-xs text-slate-500 mt-3 pt-3 border-t border-slate-100">
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-3 pt-3 border-t border-slate-100 dark:border-slate-800">
                 {skill.experience}
               </p>
             </div>
@@ -301,7 +300,7 @@ const About = () => {
         </div>
 
         {/* Core CS Fundamentals Box */}
-        <div className="mt-8 bg-slate-900 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl">
+        <div className="mt-8 bg-slate-900 dark:bg-slate-950 text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xl border border-blue-500/30">
               🧠
@@ -314,7 +313,7 @@ const About = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
             {coreCSFundamentals.map((cs) => (
-              <div key={cs.name} className="bg-slate-800/70 p-4 rounded-2xl border border-slate-700/60">
+              <div key={cs.name} className="bg-slate-800/70 dark:bg-slate-900/80 p-4 rounded-2xl border border-slate-700/60">
                 <div className="flex justify-between items-center mb-1">
                   <h4 className="text-sm font-bold text-slate-100">{cs.name}</h4>
                   <span className="text-[10px] font-bold text-emerald-400 px-2 py-0.5 bg-emerald-950/60 rounded border border-emerald-800/40">
@@ -331,7 +330,7 @@ const About = () => {
       {/* 5. Work Experience Section */}
       <div className='py-10'>
         <div className="mb-6">
-          <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">Professional Track</span>
+          <span className="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider">Professional Track</span>
           <h2 className='subhead-text text-2xl sm:text-3xl font-bold mt-0.5'>Work Experience</h2>
         </div>
 
@@ -339,7 +338,7 @@ const About = () => {
           {experiences.map((exp) => (
             <div
               key={exp.company_name}
-              className="bg-white rounded-3xl border border-slate-200/80 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden"
+              className="bg-white dark:bg-slate-900/90 rounded-3xl border border-slate-200/80 dark:border-slate-800 p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden"
             >
               <div
                 className="w-2 h-full absolute top-0 left-0"
@@ -349,26 +348,26 @@ const About = () => {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="text-lg sm:text-xl font-bold text-slate-900">
+                    <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
                       {exp.title}
                     </h3>
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-700 border border-slate-200">
+                    <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
                       {exp.type}
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-blue-600 font-semibold text-sm mt-1">
+                  <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold text-sm mt-1">
                     <span>{exp.company_name}</span>
                     <span>•</span>
-                    <span className="text-slate-500 font-normal text-xs">{exp.location}</span>
+                    <span className="text-slate-500 dark:text-slate-400 font-normal text-xs">{exp.location}</span>
                   </div>
                 </div>
-                <span className="px-3 py-1 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 w-fit shrink-0">
+                <span className="px-3 py-1 rounded-lg text-xs font-bold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-fit shrink-0">
                   📅 {exp.date}
                 </span>
               </div>
 
               {/* Bullet Points */}
-              <ul className="mt-3 space-y-2.5 text-slate-600 text-xs sm:text-sm leading-relaxed list-disc ml-5">
+              <ul className="mt-3 space-y-2.5 text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed list-disc ml-5">
                 {exp.points.map((pt, i) => (
                   <li key={i} className="pl-0.5">
                     {pt}
@@ -377,11 +376,11 @@ const About = () => {
               </ul>
 
               {/* Tech Tags */}
-              <div className="mt-5 pt-4 border-t border-slate-100 flex flex-wrap gap-1.5">
+              <div className="mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-wrap gap-1.5">
                 {exp.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200/70"
+                    className="px-2.5 py-0.5 rounded-md text-[11px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/70 dark:border-slate-700"
                   >
                     #{tag}
                   </span>
@@ -395,29 +394,29 @@ const About = () => {
       {/* 6. Education & Leadership Grid */}
       <div className="py-8 grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Education Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+        <div className="bg-white dark:bg-slate-900/90 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-lg shrink-0">
+              <div className="w-10 h-10 rounded-2xl bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-lg shrink-0">
                 🎓
               </div>
               <div>
-                <h3 className="text-lg font-bold text-slate-900">Education</h3>
-                <span className="text-xs text-slate-500 font-medium">Academic Foundation</span>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Education</h3>
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Academic Foundation</span>
               </div>
             </div>
 
-            <div className="border-t border-slate-100 pt-4">
-              <h4 className="text-base font-bold text-slate-900">{education.institution}</h4>
-              <p className="text-xs text-slate-500 font-medium">{education.location}</p>
-              <p className="text-xs sm:text-sm font-bold text-blue-600 mt-2">{education.degree}</p>
+            <div className="border-t border-slate-100 dark:border-slate-800 pt-4">
+              <h4 className="text-base font-bold text-slate-900 dark:text-white">{education.institution}</h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">{education.location}</p>
+              <p className="text-xs sm:text-sm font-bold text-blue-600 dark:text-blue-400 mt-2">{education.degree}</p>
               
-              <div className="mt-3 flex items-center justify-between bg-emerald-50 text-emerald-800 px-3 py-2 rounded-xl text-xs font-bold border border-emerald-200/60">
+              <div className="mt-3 flex items-center justify-between bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 px-3 py-2 rounded-xl text-xs font-bold border border-emerald-200/60 dark:border-emerald-800/40">
                 <span>CGPA: {education.cgpa} / 10.0</span>
                 <span>Period: {education.period}</span>
               </div>
 
-              <ul className="mt-4 space-y-1.5 text-xs text-slate-600">
+              <ul className="mt-4 space-y-1.5 text-xs text-slate-600 dark:text-slate-300">
                 {education.highlights.map((hl, i) => (
                   <li key={i} className="flex items-start gap-1.5">
                     <span className="text-blue-500 font-bold">•</span>
@@ -430,29 +429,29 @@ const About = () => {
         </div>
 
         {/* Leadership & Mentorship Card */}
-        <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-sm flex flex-col justify-between">
+        <div className="bg-white dark:bg-slate-900/90 rounded-3xl p-6 sm:p-8 border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-lg shrink-0">
+              <div className="w-10 h-10 rounded-2xl bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-lg shrink-0">
                 👥
               </div>
               <div>
-                <h3 className="text-lg font-bold text-slate-900">Leadership & Mentorship</h3>
-                <span className="text-xs text-slate-500 font-medium">Community Contributions</span>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">Leadership & Mentorship</h3>
+                <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">Community Contributions</span>
               </div>
             </div>
 
-            <div className="border-t border-slate-100 pt-4 space-y-5">
+            <div className="border-t border-slate-100 dark:border-slate-800 pt-4 space-y-5">
               {leadership.map((item) => (
                 <div key={item.organization}>
                   <div className="flex justify-between items-start">
-                    <h4 className="text-sm font-bold text-slate-900">{item.organization}</h4>
-                    <span className="text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{item.organization}</h4>
+                    <span className="text-[10px] font-semibold text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">
                       {item.period}
                     </span>
                   </div>
-                  <p className="text-xs font-bold text-purple-600 mt-0.5">{item.role}</p>
-                  <ul className="mt-2 space-y-1 text-xs text-slate-600">
+                  <p className="text-xs font-bold text-purple-600 dark:text-purple-400 mt-0.5">{item.role}</p>
+                  <ul className="mt-2 space-y-1 text-xs text-slate-600 dark:text-slate-300">
                     {item.points.map((pt, idx) => (
                       <li key={idx} className="flex items-start gap-1.5">
                         <span className="text-purple-500 font-bold">•</span>
@@ -467,7 +466,7 @@ const About = () => {
         </div>
       </div>
 
-      <hr className='border-slate-200 my-6' />
+      <hr className='border-slate-200 dark:border-slate-800 my-6' />
 
       <CTA />
     </section>

@@ -107,15 +107,15 @@ const Contact = () => {
   };
 
   return (
-    <section className='relative flex lg:flex-row flex-col max-container pb-12 gap-10'>
+    <section className='relative flex lg:flex-row flex-col max-container pb-12 gap-10 transition-colors duration-300'>
       {alert.show && <Alert {...alert} />}
 
       <div className='flex-1 min-w-[50%] flex flex-col'>
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-600 border border-blue-200 w-fit mb-3">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 w-fit mb-3">
           <span>💬 Direct Contact & Messaging</span>
         </div>
-        <h1 className='head-text'>Get in Touch</h1>
-        <p className="text-slate-500 mt-2 text-sm sm:text-base leading-relaxed">
+        <h1 className='head-text dark:text-white'>Get in Touch</h1>
+        <p className="text-slate-500 dark:text-slate-400 mt-2 text-sm sm:text-base leading-relaxed">
           Whether you want to discuss software engineering roles, microservices architecture, quantitative C++ systems, or full-stack projects — reach out anytime!
         </p>
 
@@ -123,14 +123,14 @@ const Contact = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
           <a
             href={`mailto:${personalInfo.email}`}
-            className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-blue-500 hover:shadow-md transition-all flex items-center gap-3.5 group"
+            className="p-4 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-blue-500 hover:shadow-md transition-all flex items-center gap-3.5 group"
           >
-            <div className="w-11 h-11 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xl shrink-0 group-hover:scale-110 transition-transform">
+            <div className="w-11 h-11 rounded-xl bg-blue-50 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center font-bold text-xl shrink-0 group-hover:scale-110 transition-transform">
               ✉️
             </div>
             <div className="overflow-hidden">
-              <span className="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">Email Address</span>
-              <span className="text-xs sm:text-sm font-bold text-slate-800 truncate block group-hover:text-blue-600 transition-colors">
+              <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 block uppercase tracking-wider">Email Address</span>
+              <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white truncate block group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                 {personalInfo.email}
               </span>
             </div>
@@ -138,14 +138,14 @@ const Contact = () => {
 
           <a
             href={`tel:${personalInfo.phone}`}
-            className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm hover:border-blue-500 hover:shadow-md transition-all flex items-center gap-3.5 group"
+            className="p-4 rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200/80 dark:border-slate-800 shadow-sm hover:border-blue-500 hover:shadow-md transition-all flex items-center gap-3.5 group"
           >
-            <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl shrink-0 group-hover:scale-110 transition-transform">
+            <div className="w-11 h-11 rounded-xl bg-emerald-50 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xl shrink-0 group-hover:scale-110 transition-transform">
               📞
             </div>
             <div>
-              <span className="text-[10px] font-bold text-slate-400 block uppercase tracking-wider">Phone / Mobile</span>
-              <span className="text-xs sm:text-sm font-bold text-slate-800 group-hover:text-emerald-600 transition-colors">
+              <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500 block uppercase tracking-wider">Phone / Mobile</span>
+              <span className="text-xs sm:text-sm font-bold text-slate-800 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                 {personalInfo.phone}
               </span>
             </div>
@@ -156,11 +156,11 @@ const Contact = () => {
         <form
           ref={formRef}
           onSubmit={handleSubmit}
-          className='w-full flex flex-col gap-5 mt-6 bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-md relative overflow-hidden'
+          className='w-full flex flex-col gap-5 mt-6 bg-white dark:bg-slate-900/90 p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-md relative overflow-hidden'
         >
-          <h3 className="text-lg font-bold text-slate-900">Send Message</h3>
+          <h3 className="text-lg font-bold text-slate-900 dark:text-white">Send Message</h3>
 
-          <label className='text-slate-700 font-semibold text-xs uppercase tracking-wider'>
+          <label className='text-slate-700 dark:text-slate-300 font-semibold text-xs uppercase tracking-wider'>
             Your Name
             <input
               type='text'
@@ -174,7 +174,7 @@ const Contact = () => {
               onBlur={handleBlur}
             />
           </label>
-          <label className='text-slate-700 font-semibold text-xs uppercase tracking-wider'>
+          <label className='text-slate-700 dark:text-slate-300 font-semibold text-xs uppercase tracking-wider'>
             Your Email Address
             <input
               type='email'
@@ -188,7 +188,7 @@ const Contact = () => {
               onBlur={handleBlur}
             />
           </label>
-          <label className='text-slate-700 font-semibold text-xs uppercase tracking-wider'>
+          <label className='text-slate-700 dark:text-slate-300 font-semibold text-xs uppercase tracking-wider'>
             Message
             <textarea
               name='message'
@@ -223,8 +223,8 @@ const Contact = () => {
       </div>
 
       {/* 3D Fox Canvas */}
-      <div className='lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px] bg-slate-900/5 rounded-3xl overflow-hidden border border-slate-200/80 relative shadow-inner'>
-        <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-800 border border-slate-200/80 shadow-sm flex items-center gap-2">
+      <div className='lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px] bg-slate-900/5 dark:bg-slate-900/40 rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 relative shadow-inner'>
+        <div className="absolute top-4 left-4 z-10 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-bold text-slate-800 dark:text-white border border-slate-200/80 dark:border-slate-700 shadow-sm flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span>🦊 Interactive 3D Canvas</span>
         </div>
